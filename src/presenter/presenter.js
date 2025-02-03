@@ -1,10 +1,10 @@
-import MainInfoView from './view/main-info-view.js';
-import FiltersView from './view/filters-view.js';
-import SortView from './view/sort-view.js';
-import EventsListView from './view/events-list-view.js';
-import {render} from './framework/render.js';
-import PointPresenter from './point-presenter.js';
-import { sortPoints } from './utils.js';
+import MainInfoView from '../view/main-info-view.js';
+import FiltersView from '../view/filters-view.js';
+import SortView from '../view/sort-view.js';
+import EventsListView from '../view/events-list-view.js';
+import {render} from '../framework/render.js';
+import PointPresenter from '../presenter/point-presenter.js';
+import { sortPoints } from '../utils.js';
 export default class Presenter {
   sortContainer = null;
   eventsContainer = new EventsListView();

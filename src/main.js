@@ -1,4 +1,4 @@
-import Presenter from './presenter.js';
+import Presenter from './presenter/presenter.js';
 import Model from './model/model.js';
 
 import { mockDestinations} from './mock/destinations.js';
