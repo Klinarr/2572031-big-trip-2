@@ -51,17 +51,11 @@ export default class PointPresenter {
 
     eventEdit._restoreHandlers();
     eventEdit.setFormSubmitHandler(() => {
-      replace(eventItem, eventEdit);
-      remove(eventEdit);
-      document.removeEventListener('keydown', this.#escKeyDownHandler);
-      this.#isEditMode = false;
+      this.closeEdit();
     });
 
     eventEdit.setRollupButtonClickHandler(() => {
-      replace(eventItem, eventEdit);
-      remove(eventEdit);
-      document.removeEventListener('keydown', this.#escKeyDownHandler);
-      this.#isEditMode = false;
+      this.closeEdit();
     });
 
     document.addEventListener('keydown', this.#escKeyDownHandler);
@@ -70,10 +64,7 @@ export default class PointPresenter {
   #escKeyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
-      replace(this.#eventItem, this.#eventEdit);
-      remove(this.#eventEdit);
-      document.removeEventListener('keydown', this.#escKeyDownHandler);
-      this.#isEditMode = false;
+      this.closeEdit();
     }
   };
 

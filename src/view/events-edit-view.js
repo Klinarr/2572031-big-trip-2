@@ -1,5 +1,7 @@
 import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
 import { dateModule } from '../utils.js';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 
 function createEventsEditTemplate(state, destination, allOffers , allDestinations) {
   const dateFrom = new Date(state.dateFrom);
@@ -182,6 +184,28 @@ export default class EventsEditView extends AbstractStatefulView {
     this.element.querySelector('.event__input--destination').addEventListener('change', this.#destinationChangeHandler);
     this.setFormSubmitHandler(this._callback.formSubmit);
     this.setRollupButtonClickHandler(this._callback.rollupClick);
+
+    flatpickr(this.element.querySelector('#event-start-time-1'), {
+      enableTime: true, // Включаем выбор времени
+      dateFormat: 'd/m/Y H:i', // Формат даты и времени (пример: 31/12/2023 14:30)
+      defaultDate: this._state.dateFrom, // Устанавливаем начальную дату
+      onChange: (selectedDates) => {
+        this.updateElement({
+          dateFrom: selectedDates[0].toISOString(), // Обновляем состояние
+        });
+      },
+    });
+
+    flatpickr(this.element.querySelector('#event-end-time-1'), {
+      enableTime: true, // Включаем выбор времени
+      dateFormat: 'd/m/Y H:i', // Формат даты и времени (пример: 31/12/2023 14:30)
+      defaultDate: this._state.dateTo, // Устанавливаем начальную дату
+      onChange: (selectedDates) => {
+        this.updateElement({
+          dateTo: selectedDates[0].toISOString(), // Обновляем состояние
+        });
+      },
+    });
   }
 
   #typeChangeHandler = (evt) => {
